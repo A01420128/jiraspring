@@ -26,6 +26,7 @@ public class OperacionIntegrationTest extends JirademoApplicationTests {
     @Test
     public void testSumaController() throws Exception {
         OperacionRequest or = new OperacionRequest();
+        // chs
         or.setA(3);
         or.setB(5);
         ObjectMapper objectMapper = new ObjectMapper();
