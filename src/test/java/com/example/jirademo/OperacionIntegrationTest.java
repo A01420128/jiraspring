@@ -26,7 +26,6 @@ public class OperacionIntegrationTest extends JirademoApplicationTests {
     @Test
     public void testSumaController() throws Exception {
         OperacionRequest or = new OperacionRequest();
-        // chs
         or.setA(3);
         or.setB(5);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -38,5 +37,21 @@ public class OperacionIntegrationTest extends JirademoApplicationTests {
     @Test
     public void testFailingSuma() throws Exception {
         mockMvc.perform(post("/v1/operacion/suma").contentType(MediaType.APPLICATION_JSON).content("{\"a\":\"hola\",\"b\":\"hola\"}")).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void testRestaController() throws Exception {
+        OperacionRequest or = new OperacionRequest();
+        or.setA(3);
+        or.setB(5);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter ow = objectMapper.writer().withDefaultPrettyPrinter();
+        String jsonBody = ow.writeValueAsString(or);
+        mockMvc.perform(post("/v1/operacion/resta").contentType(MediaType.APPLICATION_JSON).content(jsonBody)).andExpect(status().isOk());
+    }
+
+    @Test
+    public void testFailingResta() throws Exception {
+        mockMvc.perform(post("/v1/operacion/resta").contentType(MediaType.APPLICATION_JSON).content("{\"a\":\"hola\",\"b\":\"hola\"}")).andExpect(status().is4xxClientError());
     }
 }
