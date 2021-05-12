@@ -20,5 +20,10 @@ public class OperacionController {
     public double sumar(@RequestBody OperacionRequest operacionRequest) {
         return operacionService.suma(operacionRequest.getA(), operacionRequest.getB());
     }
+
+    @PostMapping("/resta")
+    public double restar(@RequestBody OperacionRequest operacionRequest) {
+        return operacionService.resta(operacionRequest.getA(), operacionRequest.getB());
+    }
     
 }
